@@ -1,0 +1,126 @@
+/* Base styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: darkcyan;
+    color: #fff;
+  }
+  
+  .navbar-brand {
+    font-size: 1.5em;
+  }
+  
+  .navbar-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-item {
+    margin-left: 20px;
+  }
+  
+  .navbar-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 0.3s;
+  }
+  
+  /* Hover effect */
+  .navbar-link:hover {
+    background-color: darkslategray;
+  }
+  
+  /* Hamburger menu styles */
+  .navbar-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 4px 0;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .navbar-menu {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .navbar-menu.active {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 53px;
+      right: 0;
+      background-color: #333;
+      width: 50%;
+    }
+  
+    .navbar-item {
+      margin: 0;
+    }
+  
+    .navbar-link {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .navbar-toggle {
+      display: flex;
+    }
+  }
+
+  
+/*Hero styling*/
+.hero-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('Facebook Banner.jpg') center center no-repeat;
+    background-size: cover;
+    height: 80vh;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Adjust transparency here */
+    z-index: -1;
+  }
+  
+  .hero-content {
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+    padding: 24px;
+    margin: 0 auto;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+    font-size: 40px;
+  }
