@@ -246,3 +246,46 @@
   width: 100%;
 }
 
+/* About Section CSS */
+.about {
+  background-color: #cacaca;
+}
+
+.about-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-self: center;
+  margin: 0 auto;
+  height: 90vh;
+  background-color: #cacaca;
+  z-index: 1;
+  width: 100%;
+  max-width: 1300px;
+  padding: 0 50px; 
+}
+
+.about-img img {
+  max-width: 90%;
+  height: auto;
+}
+
+.about-content h2 {
+  font-size: 4rem;
+  background-color: #ff8177;
+  background-image: linear-gradient(to top, #b721ff 0%, #21d4fd 100%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  moz-text-fill-color: transparent;
+}
+
+.about-content p {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2b2b2b;
+}
+
