@@ -159,11 +159,64 @@
           </div>
         </div>
     </section>
-    
+
     <!--Contact Me Contact Form Section-->
-    <section id="contact">
+    <section id="contactForm">
+      <h1>Artwork Contact Form</h1>
+    <form>
+        
+         <!-- Name and Email Fields -->
+         <label for="name">Name:</label>
+         <input type="text" id="name" class="name-input" placeholder="Enter your name" required>
+ 
+         <label for="email">Email:</label>
+         <input type="email" id="email" class="email-input" placeholder="Enter your email" required>
+         <span id="email-error" class="error-message"></span>
+        
+        <label for="artwork">Artwork:</label>
+
+        <!-- Inquiry Section -->
+        <div id="inquiry" class="inquiry">
+            <div class="inquiry__container">
+                <label for="inquiry-checkbox">Inquire about art pieces:</label>
+                <input type="checkbox" id="inquiry-checkbox" class="inquiry-checkbox">
+                
+                <div class="selection-container" id="selection-container" style="display: none;">
+                    <label for="art-selection">Select art piece:</label>
+                    <select id="art-selection" class="art-selection">
+                        <option value="" disabled selected>Select a piece</option>
+                        <option value="piece1">Calla Lily Dream</option>
+                        <option value="piece2">Celestial Slumber</option>
+                        <option value="piece3">Colorful Cat</option>
+                        <option value="piece4">Dripping Face</option>
+                        <option value="piece5">Peachy Keen Face</option>
+                        <option value="piece6">Pink Drips Bunny</option>
+                        <option value="piece7">Poppy Splatter</option>
+                        <option value="piece8">Rose</option>
+                        <!-- Add more art pieces as needed -->
+                    </select>
+                </div>
+                
+                <div class="selected-pieces-container" id="selected-pieces-container"></div>
+
+                    <!-- New Commission Inquiry Section -->
+                <label for="commission-checkbox">Inquire about a commission piece:</label>
+                <input type="checkbox" id="commission-checkbox" class="commission-checkbox">
+                
+                <div class="commission-container" id="commission-container" style="display: none;">
+                    <label for="commission-text">Describe the commission piece:</label>
+                    <textarea id="commission-text" class="commission-text" rows="4" placeholder="Describe the commission piece you are interested in..."></textarea>
+                </div>
+
+            </div>
+        </div>
+
+        <button type="submit" id="submitbtn"><a href="/">Submit</a></button>
+    </form>
 
     </section>
+
+    <!-- Footer Section -->
 
     <script src="app.js"></script>
 </body>
