@@ -124,3 +124,106 @@ window.addEventListener('click', function(event) {
 // Display the available art pieces count on page load
 window.onload = displayAvailableCount;
 
+//Blog Posts Section//
+
+// Array of blog posts
+const blogPosts = [
+  {
+      title: "Exploring Watercolor Techniques",
+      content: `In this post, we delve into various watercolor techniques, from wet-on-wet to dry brush, and how each method can be used to create stunning effects. Watercolor is a versatile medium that allows for a range of artistic expressions. Whether you're a beginner or an experienced artist, experimenting with different techniques can help you discover new ways to bring your visions to life.
+      
+      Wet-on-wet involves applying wet paint onto a wet surface, creating soft edges and blending colors effortlessly. This technique is perfect for painting skies, water, and abstract backgrounds. On the other hand, dry brush technique uses a brush with very little water to create texture and fine details, ideal for adding highlights and intricate patterns.
+      
+      Another exciting method is glazing, where you apply a thin, transparent layer of color over a dry area, allowing the underlying colors to show through. This can add depth and richness to your paintings. Experimenting with these and other techniques can help you develop your unique style and enhance your watercolor artwork.`,
+      date: "2024-07-10",
+      popularity: 10
+  },
+  {
+      title: "The Beauty of Minimalistic Art",
+      content: `Minimalistic art is all about simplicity and elegance. By stripping down to the essentials, minimalistic art allows viewers to focus on the composition, color, and form without the distractions of unnecessary details. This art style embraces the idea that less is more, creating powerful visual statements with minimal elements.
+      
+      One of the key principles of minimalism is the use of negative space, or the empty areas around and between the subjects of an image. This space is as important as the subjects themselves, helping to balance the composition and draw attention to the focal points. Minimalistic art often uses a limited color palette, relying on contrasts and harmonies to create impact.
+      
+      Minimalistic art can be incredibly versatile, ranging from abstract pieces to realistic depictions with a minimalistic approach. It's a style that encourages contemplation and invites viewers to find meaning in simplicity. By focusing on the essential elements, minimalistic art captures the essence of a subject in a clean, unadorned way.`,
+      date: "2024-06-30",
+      popularity: 15
+  },
+  {
+      title: "Fantasy Art: Bridging Imagination and Reality",
+      content: `Fantasy art lets us explore realms beyond our imagination, bringing mythical creatures, magical landscapes, and epic adventures to life. This genre of art blurs the line between reality and fiction, creating worlds where anything is possible. Whether it's through detailed illustrations, digital paintings, or mixed media, fantasy art allows artists to express their wildest dreams.
+      
+      One of the hallmarks of fantasy art is the creation of unique characters and settings. Artists often draw inspiration from mythology, folklore, and literature to craft beings and places that captivate the viewer's imagination. From dragons and fairies to enchanted forests and ancient ruins, fantasy art is a celebration of creativity and storytelling.
+      
+      Techniques in fantasy art can vary widely, from realistic renderings to highly stylized interpretations. Digital tools have expanded the possibilities for fantasy artists, allowing for intricate details and complex compositions that would be challenging to achieve with traditional media. Fantasy art continues to inspire and transport audiences to extraordinary worlds, making it a beloved genre for both artists and fans alike.`,
+      date: "2024-07-12",
+      popularity: 20
+  },
+  {
+      title: "Tips for Sketching Wildlife",
+      content: `Sketching wildlife requires patience and observation. Capturing the essence of animals in their natural habitat can be challenging but rewarding. Here are some tips to help you get started with wildlife sketching:
+      
+      1. **Study Your Subject**: Before you start sketching, take the time to observe the animal. Note its movements, posture, and unique features. This will help you create more accurate and dynamic sketches.
+      
+      2. **Use Reference Photos**: If observing live animals is not possible, use reference photos. Look for images that show the animal from different angles and in various poses.
+      
+      3. **Start with Basic Shapes**: Begin your sketch with basic shapes to establish the overall form and proportions. This makes it easier to refine the details later on.
+      
+      4. **Capture the Gesture**: Focus on capturing the animal's gesture and movement. Quick, loose sketches can help convey the energy and fluidity of the subject.
+      
+      5. **Pay Attention to Details**: Once the basic structure is in place, start adding details. Pay attention to the texture of fur, feathers, or scales, and use varied line weights to create depth and interest.
+      
+      6. **Practice Regularly**: Like any skill, regular practice is key to improvement. Sketch different animals and experiment with various techniques to find what works best for you.
+      
+      Wildlife sketching can be a fulfilling way to connect with nature and improve your artistic skills. With practice and patience, you'll be able to create compelling sketches that capture the beauty and essence of wildlife.`,
+      date: "2024-06-25",
+      popularity: 5
+  }
+];
+
+// Function to find the latest blog post
+function getLatestPost(posts) {
+  let latestPost = posts[0];
+  for (let post of posts) {
+      if (new Date(post.date) > new Date(latestPost.date)) {
+          latestPost = post;
+      }
+  }
+  return latestPost;
+}
+
+// Function to get popular blog posts
+function getPopularPosts(posts) {
+  // Sort posts by popularity in descending order
+  return posts.sort((a, b) => b.popularity - a.popularity).slice(0, 3);
+}
+
+// Function to display a blog post
+function displayPost(post) {
+  document.getElementById('post-content').innerHTML = `
+      <h3>${post.title}</h3>
+      <p>${post.content.replace(/\n/g, '<br>')}</p>
+      <p><small>Published on: ${post.date}</small></p>
+  `;
+}
+
+// Display the latest blog post on page load
+const latestPost = getLatestPost(blogPosts);
+displayPost(latestPost);
+
+// Display popular blog posts
+const popularPosts = getPopularPosts(blogPosts);
+const popularPostsList = document.getElementById('popular-posts-list');
+popularPosts.forEach((post, index) => {
+  const listItem = document.createElement('li');
+  listItem.innerHTML = `<a href="#" data-index="${index}">${post.title}</a>`;
+  popularPostsList.appendChild(listItem);
+});
+
+// Add event listeners to popular post links
+document.querySelectorAll('#popular-posts-list a').forEach(link => {
+  link.addEventListener('click', function(event) {
+      event.preventDefault();
+      const postIndex = this.getAttribute('data-index');
+      displayPost(popularPosts[postIndex]);
+  });
+});

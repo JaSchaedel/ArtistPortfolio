@@ -484,3 +484,49 @@
   color: #fff;
   /* need to fix so that it stays in place when the screen size is changed*/
 }
+
+/* Blog Section CSS */
+
+#blog {
+  background-color: #bebebe;
+  min-height: 50vh;
+  padding: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.blog-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.latest-post, .popular-posts {
+  width: 48%;
+  background-color: #eaeaea;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.latest-post h2, .popular-posts h2 {
+  margin-top: 0;
+}
+
+#post-content {
+  margin-top: 20px;
+}
+
+#popular-posts-list {
+  list-style: none;
+  padding: 0;
+}
+
+#popular-posts-list li {
+  margin-bottom: 10px;
+}
+
+#popular-posts-list li a {
+  text-decoration: none;
+  color: #0073e6;
+  cursor: pointer;
+}
