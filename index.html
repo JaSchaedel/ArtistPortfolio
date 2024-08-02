@@ -26,7 +26,7 @@
                     <a href="#home" class="navbar__links">Home</a>
                   </li>
                   <li class="navbar__item">
-                    <a href="#about" class="navbar__links">About</a>
+                    <a href="#aboutMe" class="navbar__links">About</a>
                   </li>
                   <li class="navbar__item">
                     <a href="#gallery" class="navbar__links">Gallery</a>
@@ -140,6 +140,8 @@
         </div>
       </div>
     </section>
+
+    
     <div class="availability"></div>
     
     <!--Blog Section-->
@@ -160,61 +162,34 @@
         </div>
     </section>
 
-    <!--Contact Me Contact Form Section-->
-    <section id="contactForm">
-      <h1>Artwork Contact Form</h1>
-    <form>
-        
-         <!-- Name and Email Fields -->
-         <label for="name">Name:</label>
-         <input type="text" id="name" class="name-input" placeholder="Enter your name" required>
- 
-         <label for="email">Email:</label>
-         <input type="email" id="email" class="email-input" placeholder="Enter your email" required>
-         <span id="email-error" class="error-message"></span>
-        
-        <label for="artwork">Artwork:</label>
-
-        <!-- Inquiry Section -->
-        <div id="inquiry" class="inquiry">
-            <div class="inquiry__container">
-                <label for="inquiry-checkbox">Inquire about art pieces:</label>
-                <input type="checkbox" id="inquiry-checkbox" class="inquiry-checkbox">
+    <!--Contact Form Section-->
+    <section class="formSection">
+        <h1>Artwork Contact Form</h1>
+    
+    <div class="formContainer">
+        <div id="contactFormContainer" class="contactFormContainer">
+            <form id="contactForm" class="contact-form">
+                <input type="text" id="name" placeholder="Name" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <span id="email-error" class="error-message"></span>
                 
-                <div class="selection-container" id="selection-container" style="display: none;">
-                    <label for="art-selection">Select art piece:</label>
-                    <select id="art-selection" class="art-selection">
-                        <option value="" disabled selected>Select a piece</option>
-                        <option value="piece1">Calla Lily Dream</option>
-                        <option value="piece2">Celestial Slumber</option>
-                        <option value="piece3">Colorful Cat</option>
-                        <option value="piece4">Dripping Face</option>
-                        <option value="piece5">Peachy Keen Face</option>
-                        <option value="piece6">Pink Drips Bunny</option>
-                        <option value="piece7">Poppy Splatter</option>
-                        <option value="piece8">Rose</option>
-                        <!-- Add more art pieces as needed -->
-                    </select>
+                <input type="text" id="piecesOfInterest" placeholder="Pieces of Interest">
+                <textarea id="message" placeholder="Comments, inquires, questions?"></textarea>
+                <button type="submit" id="send-button">Submit</button>
+            </form>
+            <div id="art-list" class="art-list">
+                <h2>Available Art Pieces:</h2>
+            </div>
+            
+            <!-- The Modal -->
+            <div id="myModal">
+                <div id="myModalContent">
+                    <span class="close">&times;</span>
+                    <p>Thank you for your interest in my artwork. Please allow up to 3 business days for a response to your inquiries.</p>
                 </div>
-                
-                <div class="selected-pieces-container" id="selected-pieces-container"></div>
-
-                    <!-- New Commission Inquiry Section -->
-                <label for="commission-checkbox">Inquire about a commission piece:</label>
-                <input type="checkbox" id="commission-checkbox" class="commission-checkbox">
-                
-                <div class="commission-container" id="commission-container" style="display: none;">
-                    <label for="commission-text">Describe the commission piece:</label>
-                    <textarea id="commission-text" class="commission-text" rows="4" placeholder="Describe the commission piece you are interested in..."></textarea>
-                </div>
-
             </div>
         </div>
-
-        <button type="submit" id="submitbtn"><a href="/">Submit</a></button>
-    </form>
-
-    </section>
+    </section> 
 
     <!-- Footer Section -->
 

@@ -65,10 +65,10 @@
   height: 100%;
 }
 
-.main__btn:hover {
+/*.main__btn:hover {
   background: #4837ff;
   transition: all 0.3s ease;
-}
+}*/
 
 .navbar__links:hover {
   color: #f77062;
@@ -165,11 +165,11 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  height: 90vh;
+  height: 100vh;
   background-color: #222222;
   z-index: 1;
   width: 100%;
-  max-width: 1300px;
+  /*max-width: 1300px;*/
   padding: 0 50px; 
 }
 
@@ -257,7 +257,7 @@
   align-items: center;
   justify-self: center;
   margin: 0 auto;
-  height: 90vh;
+  /* height: 90vh; */
   background-color: #cacaca;
   z-index: 1;
   width: 100%;
@@ -284,6 +284,7 @@
 
 .about-content p {
   margin-top: 1rem;
+  margin-bottom: 3rem;
   font-size: 1.2rem;
   font-weight: 600;
   color: #2b2b2b;
@@ -293,11 +294,12 @@
 .gallery {
   background-color: #222222;
   min-height: 100vh;
+  position: relative;
 }
 
 .gallery__container {
   position: absolute;
-  top: 245%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 1000px;
@@ -473,8 +475,8 @@
 
 /* availabity text styles*/
 .availability {
-  position: absolute;
-  top: 2400px; 
+  position: relative;
+  bottom: 70px; 
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -532,114 +534,78 @@
 }
 
 /* Contact Section CSS */
-
-#contactForm {
-  background-color: #2b2b2b;
-}
-#contactForm h1 {
-  font-size: 4rem;
+.formSection h1 {
+  font-size: 3rem;
   background-color: #ff8177;
   background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
-  moz-text-fill-color: transparent;
-}
-
-form {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #eeeeee;
-}
-
-label {
-  display: block;
-  margin-bottom: 8px;
-}
-
-h1 {
+  moz-text-fill-color: transparent; 
   text-align: center;
 }
 
-/*Inquiry Section Styles*/ 
-.inquiry {
-  background-color: #eeeeee;
-  padding: 20px;
+.formSection {
+  background-color: #2b2b2b;
 }
 
-.inquiry__container {
-  max-width: 600px;
-  margin: 0 auto;
+.formContainer {
+  background-color: #2b2b2b;
 }
 
-.selection-container {
-  margin-top: 10px;
-}
-
-.selected-pieces-container {
-  margin-top: 20px;
-}
-
-.selected-piece {
+#contactFormContainer {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #2b2b2b;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.contact-form, .art-list {
+  flex: 1;
+  padding: 20px;
+  background-color: #dbdbdb;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form input, .contact-form textarea, .contact-form button {
+  width: 100%;
+  padding: 10px;
   margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-.selected-piece .piece-name {
-  flex-grow: 1;
-}
-
-.selected-piece img {
-  width: 100px;
-  height: auto;
-  margin-right: 10px;
-}
-
-.selected-piece .close-button {
-  background: #ff5c5c;
+.contact-form button {
+  background-color: #ff8177;
+  color: #fff;
   border: none;
-  border-radius: 50%;
-  color: white;
   cursor: pointer;
-  font-size: 16px;
-  line-height: 16px;
-  width: 20px;
-  height: 20px;
-  text-align: center;
 }
 
-/*Commission Inquiry Section CSS*/ 
-.commission-container {
-  margin-top: 20px;
+.contact-form button:hover {
+  background-color: #4837ff;
 }
 
-.commission-text {
-  width: 100%;
+.art-list h2 {
+  margin-top: 0;
+}
+
+.art-list p {
+  font-size: 1.2em;
+  color: #000000;
+  margin: 10px 0;
   padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  resize: vertical;
-}
-
-.name-input, .email-input, .commission-text {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s;
 }
 
 .error-message {
@@ -647,46 +613,54 @@ h1 {
   font-size: 14px;
 }
 
-#submitbtn {
-  font-size: 1rem;
-  background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
-  padding: 14px 32px;
-  border: none;
-  border-radius: 4px;
-  color: #fff;
-  margin-top: 2rem;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.35s;
-  outline: none;
-}
-
-#submitbtn a {
-  position: relative;
-  z-index: 2;
-  color:#fff;
-  text-decoration: none;
-}
-
-
-#submitbtn:after {
-  position: absolute;
-  content: " ";
-  top: 0;
+/* Modal container */
+#myModal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
   left: 0;
-  width: 0;
+  top: 0;
+  width: 100%; 
   height: 100%;
-  background: #4837ff;
-  transition: all 0.35s;
-  border-radius: 4px;
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
 }
 
-#submitbtn:hover {
-  color: #fff;
+/* Modal content */
+#myModalContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: black;
+  font-size: 1.3rem;
 }
 
-#submitbtn:hover:after {
-  width: 100%;
+/* Close button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
 }
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
 
 /* Footer Section CSS */

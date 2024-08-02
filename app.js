@@ -230,79 +230,120 @@ document.querySelectorAll('#popular-posts-list a').forEach(link => {
 
 //Contact Form//
 
+//List of Available Pieces//
+function displayAvailableTitles() {
+    const artListContainer = document.getElementById('art-list');
+    const availableArtPieces = artPieces.filter(piece => piece.available);
+
+    availableArtPieces.forEach(piece => {
+        const titleElement = document.createElement('p');
+        titleElement.textContent = piece.title;
+
+        artListContainer.appendChild(titleElement);
+    });
+}
+
+// Call the function to display available titles when the page loads
+displayAvailableTitles();
+
+//Contact Form Section//
 document.addEventListener('DOMContentLoaded', function() {
-  const inquiryCheckbox = document.getElementById('inquiry-checkbox');
-  const selectionContainer = document.getElementById('selection-container');
-  const artSelection = document.getElementById('art-selection');
-  const selectedPiecesContainer = document.getElementById('selected-pieces-container');
-  const commissionCheckbox = document.getElementById('commission-checkbox');
-  const commissionContainer = document.getElementById('commission-container');
-  const emailInput = document.getElementById('email');
-  const emailError = document.getElementById('email-error');
-
-  const artPieces = {
-      piece1: { name: 'Calla Lily Dream', image: './images/Calla\ lily\ dreams.jpg' },
-      piece2: { name: 'Celestial Slumber', image: './images/Celestial\ Slumber.jpg' },
-      piece3: { name: 'Colorful Cat', image: './images/Colorful\ Cat.jpg' },
-      piece4: { name: 'Dripping Face', image: './images/Dripping\ face.jpg' },
-      piece5: { name: 'Peachy Keen Face', image: './images/Peachy\ keen\ face.jpg' },
-      piece6: { name: 'Pink Drips Bunny', image: './images/Pink\ drips\ bunny.jpg' },
-      piece7: { name: 'Poppy Splatter', image: './images/Poppy\ Splatter.jpg' },
-      piece8: { name: 'Rose', image: './images/Rose.jpg' },
-
-      // Add more art pieces as needed
-  };
-
-  inquiryCheckbox.addEventListener('change', function() {
-      if (this.checked) {
-          selectionContainer.style.display = 'block';
-      } else {
-          selectionContainer.style.display = 'none';
-          selectedPiecesContainer.innerHTML = '';
-      }
-  });
-
-  artSelection.addEventListener('change', function() {
-      const selectedValue = this.value;
-      if (selectedValue) {
-          const artPiece = artPieces[selectedValue];
-          const selectedPieceElement = document.createElement('div');
-          selectedPieceElement.classList.add('selected-piece');
-          selectedPieceElement.innerHTML = `
-              <img src="${artPiece.image}" alt="${artPiece.name}">
-              <span class="piece-name">${artPiece.name}</span>
-              <button class="close-button">&times;</button>
-          `;
-
-          const closeButton = selectedPieceElement.querySelector('.close-button');
-          closeButton.addEventListener('click', function() {
-              selectedPiecesContainer.removeChild(selectedPieceElement);
-          });
-
-          selectedPiecesContainer.appendChild(selectedPieceElement);
-          this.value = ''; // Reset the selection field
-      }
-  });
-
-  commissionCheckbox.addEventListener('change', function() {
-      if (this.checked) {
-          commissionContainer.style.display = 'block';
-      } else {
-          commissionContainer.style.display = 'none';
-      }
-  });
-
-  // Email validation
+    const emailInput = document.getElementById('email');
+    const emailError = document.getElementById('email-error');
+  
+// Email validation
   emailInput.addEventListener('input', function() {
-      const emailValue = emailInput.value;
-      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    const emailValue = emailInput.value;
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
-      if (emailPattern.test(emailValue)) {
-          emailError.textContent = '';
-          emailInput.style.borderColor = 'initial';
-      } else {
-          emailError.textContent = 'Please enter a valid email address';
-          emailInput.style.borderColor = 'red';
-      }
-  });
+    if (emailPattern.test(emailValue)) {
+        emailError.textContent = '';
+        emailInput.style.borderColor = 'initial';
+    } else {
+        emailError.textContent = 'Please enter a valid email address';
+        emailInput.style.borderColor = 'red';
+    }
 });
+});
+
+
+
+//Contact Form Submisson//
+const endpoint = "http://localhost:8000/contact-requests";
+    const submitBtn = document.getElementById("send-button");
+
+    const modal = document.getElementById("myModal");
+    const closeButton = document.querySelector(".close");
+    const form = document.getElementById("contactForm");
+
+    submitBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        const data = createContactObject();
+        createContactRequest(endpoint, data);
+    });
+
+    const getAllContactRequests = async () => {
+        try {
+            const response = await fetch('your-endpoint-url');
+            const allContactRequests = await response.json();
+            console.log(allContactRequests);
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    const createContactRequest = async (url, data = {}) => {
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+            console.log("Success:", result);
+            modal.innerHTML = `
+                <div id="myModalContent">
+                    <span class="close">&times;</span>
+                    <p>Thank you for your interest in my artwork. Please allow up to 3 business days for a response to your inquiries.</p>
+                </div>
+            `;
+
+            // Show the modal (you'll need CSS to style it)
+            modal.style.display = "block";
+
+            // Add event listener for the new close button
+            document.querySelector(".close").addEventListener("click", closeModal);
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const createContactObject = () => {
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const piecesInput = document.getElementById("piecesOfInterest");
+        const messageInput = document.getElementById("message");
+
+        return {
+            name: nameInput.value,
+            email: emailInput.value,
+            piecesOfInterest: [piecesInput.value],
+            message: messageInput.value,
+        };
+    };
+
+    const closeModal = () => {
+        modal.style.display = "none";
+        form.reset();
+    };
+
+    // Close the modal when clicking outside of the modal content
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
