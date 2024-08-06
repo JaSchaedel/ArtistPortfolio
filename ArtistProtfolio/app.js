@@ -67,9 +67,9 @@ const artPieces = [
         available: true
     },
     {
-        title: "What's in a Rose",
+        title: "Rose",
         description: "Pink rose in splashes and drips of watercolor.",
-        image: "./images/What's in a Rose.jpg",
+        image: "./images/Rose.jpg",
         available: true
     }
 ];

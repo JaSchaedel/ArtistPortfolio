@@ -165,44 +165,42 @@
     <!--Contact Form Section-->
     <section class="formSection">
         <h1>Artwork Contact Form</h1>
-    
         <div class="formContainer">
             <div id="contactFormContainer" class="contactFormContainer">
-                <form id="contactForm" class="contact-form">
-                    <input type="text" id="name" placeholder="Name" required>
-                    <input type="email" id="email" placeholder="Email" required>
-                    <span id="email-error" class="error-message"></span>
-                    
-                    <hr style="margin-bottom: 1rem;">
-                    <p>Which pieces are you interested in?</p>
-                    <div class="pieces-form-containter">
-                        <select name="select-pieces-of-interest" id="select-pieces-of-interest">
-                            <option selected disabled value="">Select your piece(s)</option>
-                            <!-- Option elements inserted here -->
-                        </select>
-
-                        <div id="pieces-containter">
-                            <!-- content inserted here -->
-                        </div>   
-                    </div>
-                    <div id="selected-pieces"></div>
-                    <hr style="margin-bottom: 1rem;">
-
-                    <textarea id="message" placeholder="Comments, inquires, questions?"></textarea>
-
-                    <button type="submit" id="send-button">Submit</button>
-                </form>
-           
-                <!-- The Modal -->
-                <div id="myModal">
-                    <div id="myModalContent">
-                        <span class="close">&times;</span>
-                        <p>Thank you for your interest in my artwork. Please allow up to 3 business days for a response to your inquiries.</p>
-                    </div>
+            <form id="contactForm" class="contact-form">
+                <input type="text" id="name" placeholder="Name" required />
+                <input type="text" id="email" placeholder="Email" required />
+                <span id="email-error" class="error-message"></span>
+        
+                <hr style="margin-bottom: 1rem" />
+                <p>Which pieces are you interested in?</p><br>
+                <div class="pieces-form-containter">
+                <select name="select-pieces-of-interest" id="select-pieces-of-interest">
+                    <option selected disabled value="">Select your piece(s)</option>
+                    <!-- other option elements injected by code -->
+                </select>
+        
+                <div id="pieces-container">
+                    <!-- contents injected by code -->
                 </div>
+                </div>
+                <div id="selected-pieces"></div><br>
+                <hr style="margin-bottom: 1rem" />
+        
+                <textarea id="message" placeholder="Comments, inquires, questions?"></textarea>
+        
+                <button type="submit" id="send-button">Submit</button>
+            </form>
             </div>
         </div>
-    </section> 
+        <!-- The Modal -->
+        <div id="myModal">
+            <div id="myModalContent">
+                <span class="close">&times;</span>
+                <p>Thank you for your interest in my artwork. Please allow up to 3 business days for a response to your inquiries.</p>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer Section -->
     <div class="footer-container">

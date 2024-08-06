@@ -797,7 +797,7 @@
 }
 
 /* Contact Section CSS */
-/*.formSection h1 {
+.formSection h1 {
   font-size: 3rem;
   background-color: #ff8177;
   background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
@@ -814,9 +814,9 @@
   background-color: #2b2b2b;
 }
 
-.formContainer {
+/*.formContainer {
   background-color: #2b2b2b;
-}
+}*/
 
 #contactFormContainer {
   display: flex;
@@ -870,7 +870,7 @@
   margin: 10px 0;
   padding: 10px;
   border-bottom: 1px solid #ddd;
-}*/
+}
 
 .error-message {
   color: red;
