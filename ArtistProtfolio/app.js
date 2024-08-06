@@ -101,13 +101,6 @@ function scrollRight() {
     galleryScroller.scrollBy({ left: 300, behavior: 'smooth' });
 }
 
-// Calculate and display the number of available art pieces
-/*function displayAvailableCount() {
-    const availableCount = artPieces.filter(piece => piece.available).length;
-    const availabilityDiv = document.querySelector('.availability');
-    availabilityDiv.innerText = `Total Available Art Pieces: ${availableCount}`;
-}*/
-
 document.querySelector('.next').addEventListener('click', scrollRight);
 document.querySelector('.prev').addEventListener('click', scrollLeft);
 
@@ -119,10 +112,6 @@ window.addEventListener('click', function(event) {
         modal.style.display = 'none';
     }
 });
-
-
-// Display the available art pieces count on page load
-/*window.onload = displayAvailableCount;*/
 
 //Blog Posts Section//
 
@@ -230,6 +219,27 @@ document.querySelectorAll('#popular-posts-list a').forEach(link => {
 
 //Contact Form Section//
 
+//Contact Form Email
+document.addEventListener('DOMContentLoaded', function() {
+    const emailInput = document.getElementById('email');
+    const emailError = document.getElementById('email-error');
+  
+// Email validation
+  emailInput.addEventListener('input', function() {
+    const emailValue = emailInput.value;
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+
+    if (emailPattern.test(emailValue)) {
+        emailError.textContent = '';
+        emailInput.style.borderColor = 'initial';
+    } else {
+        emailError.textContent = 'Please enter a valid email address';
+        emailInput.style.borderColor = 'red';
+    }
+});
+});
+
 const select = document.getElementById('select-pieces-of-interest');
 const piecesContainer = document.getElementById('pieces-container');
 let idCounter = 0;
@@ -257,8 +267,6 @@ select.addEventListener('change', e => {
     selectedPieces.push(select.value);
 
     loadSelectedChips();
-
-    console.log(selectedPieces); // Not necessary; just to demonstrate; remove later
 });
 
 const loadSelectedChips = () => {
@@ -269,7 +277,7 @@ const loadSelectedChips = () => {
         const selectedChip = document.createElement('div');
         selectedChip.className = 'selected-chip';
         selectedChip.innerText = value;
-        selectedChip.id = `selected-piece-${idCounter}`;
+        selectedChip.id = `selected-piece-${idCounter ++}`;
     
         const remove = document.createElement('a');
         remove.innerText = 'X';
@@ -285,16 +293,9 @@ const loadSelectedChips = () => {
 const removeChip = (selectedChipValue) => {
     //Get the index in the array for the VALUE of the item.
     const index = selectedPieces.indexOf(selectedChipValue);
-
-    // If the value is not found in the array ( if the index is -1), the splice operation is unnecessary and could throw an error.
     if (index !== -1) { 
-        // use array.splice to delete an item;
-            // ex: splice(start, deleteCount, replaceWith)
-        // In thise case we start at the passed in index, delete 1 item, replace it with nothing
         selectedPieces.splice(index, 1);
     }
-
-    console.log(selectedPieces); // Not necessary; just to demonstrate; remove later
 
     loadSelectedChips();
 }

@@ -814,10 +814,6 @@
   background-color: #2b2b2b;
 }
 
-/*.formContainer {
-  background-color: #2b2b2b;
-}*/
-
 #contactFormContainer {
   display: flex;
   justify-content: space-between;
@@ -832,7 +828,7 @@
 }
 
 
-.contact-form, .art-list {
+.contact-form {
   flex: 1;
   padding: 20px;
   background-color: #dbdbdb;
@@ -858,18 +854,6 @@
 
 .contact-form button:hover {
   background-color: #4837ff;
-}
-
-.art-list h2 {
-  margin-top: 0;
-}
-
-.art-list p {
-  font-size: 1.2em;
-  color: #000000;
-  margin: 10px 0;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
 }
 
 .error-message {
@@ -955,13 +939,6 @@
   #contactFormContainer {
     display: flex;
     flex-direction: column-reverse;
-}
-
-.art-list p {
-  font-size: 1em;
-  color: #000000;
-  margin: 10px 0;
-  padding: 10px; 
 }
 
 .contact-form input, .contact-form textarea, .contact-form button {
