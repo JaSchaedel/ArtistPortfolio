@@ -327,6 +327,7 @@ form.addEventListener("submit", (event) => {
     event.preventDefault();
     const data = createContactObject();
     createContactRequest(endpoint, data);
+    
 });
 
 const getAllContactRequests = async () => {
@@ -373,6 +374,9 @@ const createContactRequest = async (url, data = {}) => {
 const closeModal = () => {
     modal.style.display = "none";
     form.reset();
+    selectedChip = [];
+    loadSelectedChips();
+
 };
 
 // Close the modal when clicking outside of the modal content
