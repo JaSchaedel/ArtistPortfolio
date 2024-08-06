@@ -60,13 +60,19 @@ cd ArtistPortfolio
 - CodeYouWebDemoApi-main
 
 4. In order to prevent LiveServer from refreshing the page when something changes in the API (file read/write), Navigate to ArtistPortfolio directory and open in VsCode.
+```bash
 cd ArtistPortfolio code .
+```
 
 5. Running the API: It is recommended that CodeYouWebDemoApi is opened in another terminal.
+``` bash
 cd CodeYouWebDemoApi-main
+```
 
 6. Open Api in seperate VsCode window:
+``` bash
 code .
+```
 
 7. Once open, follow the instructions in the CodeYouDemoApi directory readme:
 - npm install
