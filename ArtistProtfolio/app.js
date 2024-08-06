@@ -102,11 +102,11 @@ function scrollRight() {
 }
 
 // Calculate and display the number of available art pieces
-function displayAvailableCount() {
+/*function displayAvailableCount() {
     const availableCount = artPieces.filter(piece => piece.available).length;
     const availabilityDiv = document.querySelector('.availability');
     availabilityDiv.innerText = `Total Available Art Pieces: ${availableCount}`;
-}
+}*/
 
 document.querySelector('.next').addEventListener('click', scrollRight);
 document.querySelector('.prev').addEventListener('click', scrollLeft);
@@ -122,7 +122,7 @@ window.addEventListener('click', function(event) {
 
 
 // Display the available art pieces count on page load
-window.onload = displayAvailableCount;
+/*window.onload = displayAvailableCount;*/
 
 //Blog Posts Section//
 
@@ -228,122 +228,155 @@ document.querySelectorAll('#popular-posts-list a').forEach(link => {
   });
 });
 
-//Contact Form//
+//Contact Form Section//
 
-//List of Available Pieces//
-function displayAvailableTitles() {
-    const artListContainer = document.getElementById('art-list');
-    const availableArtPieces = artPieces.filter(piece => piece.available);
+const select = document.getElementById('select-pieces-of-interest');
+const piecesContainer = document.getElementById('pieces-container');
+let idCounter = 0;
+const selectedPieces = [];
 
-    availableArtPieces.forEach(piece => {
-        const titleElement = document.createElement('p');
-        titleElement.textContent = piece.title;
-
-        artListContainer.appendChild(titleElement);
+// populate interest element
+(() => {
+    artPieces.forEach((piece) => {
+        if (piece.available) {
+            const option = document.createElement('option');
+            option.value = piece.title;
+            option.innerText = piece.title;
+            select.appendChild(option);
+        } 
+       
     });
+})();
+
+select.addEventListener('change', e => {
+    e.stopPropagation();
+    if (selectedPieces.includes(select.value)) {
+        return;
+    }
+    
+    selectedPieces.push(select.value);
+
+    loadSelectedChips();
+
+    console.log(selectedPieces); // Not necessary; just to demonstrate; remove later
+});
+
+const loadSelectedChips = () => {
+    piecesContainer.innerHTML = ''; // remove all currently shown selected pieces chips
+    select.selectedIndex = 0; // reset select input to default option
+    
+    selectedPieces.forEach( value => {
+        const selectedChip = document.createElement('div');
+        selectedChip.className = 'selected-chip';
+        selectedChip.innerText = value;
+        selectedChip.id = `selected-piece-${idCounter}`;
+    
+        const remove = document.createElement('a');
+        remove.innerText = 'X';
+        remove.href = '#';
+        remove.onclick = () => removeChip(value);
+    
+        selectedChip.appendChild(remove);
+    
+        piecesContainer.appendChild(selectedChip)
+    })
 }
 
-// Call the function to display available titles when the page loads
-displayAvailableTitles();
+const removeChip = (selectedChipValue) => {
+    //Get the index in the array for the VALUE of the item.
+    const index = selectedPieces.indexOf(selectedChipValue);
 
-//Contact Form Section//
-document.addEventListener('DOMContentLoaded', function() {
-    const emailInput = document.getElementById('email');
-    const emailError = document.getElementById('email-error');
-  
-// Email validation
-  emailInput.addEventListener('input', function() {
-    const emailValue = emailInput.value;
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-
-    if (emailPattern.test(emailValue)) {
-        emailError.textContent = '';
-        emailInput.style.borderColor = 'initial';
-    } else {
-        emailError.textContent = 'Please enter a valid email address';
-        emailInput.style.borderColor = 'red';
+    // If the value is not found in the array ( if the index is -1), the splice operation is unnecessary and could throw an error.
+    if (index !== -1) { 
+        // use array.splice to delete an item;
+            // ex: splice(start, deleteCount, replaceWith)
+        // In thise case we start at the passed in index, delete 1 item, replace it with nothing
+        selectedPieces.splice(index, 1);
     }
-});
-});
 
+    console.log(selectedPieces); // Not necessary; just to demonstrate; remove later
 
+    loadSelectedChips();
+}
+
+const createContactObject = () => {
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+
+     return {
+         name: nameInput.value,
+         email: emailInput.value,
+         piecesOfInterest: selectedPieces,
+         message: messageInput.value,
+     };
+
+};
 
 //Contact Form Submisson//
 const endpoint = "http://localhost:8000/contact-requests";
-    const submitBtn = document.getElementById("send-button");
+const submitBtn = document.getElementById("send-button");
 
-    const modal = document.getElementById("myModal");
-    const closeButton = document.querySelector(".close");
-    const form = document.getElementById("contactForm");
+const modal = document.getElementById("myModal");
+const closeButton = document.querySelector(".close");
+const form = document.getElementById("contactForm");
 
-    submitBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-        const data = createContactObject();
-        createContactRequest(endpoint, data);
-    });
+//todo 2
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = createContactObject();
+    createContactRequest(endpoint, data);
+});
 
-    const getAllContactRequests = async () => {
-        try {
-            const response = await fetch('your-endpoint-url');
-            const allContactRequests = await response.json();
-            console.log(allContactRequests);
-        } catch (error) {
-            console.log(error)
-        }
-    };
-
-    const createContactRequest = async (url, data = {}) => {
-        try {
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
-
-            const result = await response.json();
-            console.log("Success:", result);
-            modal.innerHTML = `
-                <div id="myModalContent">
-                    <span class="close">&times;</span>
-                    <p>Thank you for your interest in my artwork. Please allow up to 3 business days for a response to your inquiries.</p>
-                </div>
-            `;
-
-            // Show the modal (you'll need CSS to style it)
-            modal.style.display = "block";
-
-            // Add event listener for the new close button
-            document.querySelector(".close").addEventListener("click", closeModal);
-
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const createContactObject = () => {
-        const nameInput = document.getElementById("name");
-        const emailInput = document.getElementById("email");
-        const piecesInput = document.getElementById("piecesOfInterest");
-        const messageInput = document.getElementById("message");
-
-        return {
-            name: nameInput.value,
-            email: emailInput.value,
-            piecesOfInterest: [piecesInput.value],
-            message: messageInput.value,
-        };
-    };
-
-    const closeModal = () => {
-        modal.style.display = "none";
-        form.reset();
-    };
-
-    // Close the modal when clicking outside of the modal content
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            closeModal();
-        }
+const getAllContactRequests = async () => {
+    try {
+        const response = await fetch('your-endpoint-url');
+        const allContactRequests = await response.json();
+        console.log(allContactRequests);
+    } catch (error) {
+        console.log(error)
     }
+};
+
+// TODO 1
+const createContactRequest = async (url, data = {}) => {
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+        console.log("Success:", result);
+        modal.innerHTML = `
+            <div id="myModalContent">
+                <span class="close">&times;</span>
+                <p>Thank you for your interest in my artwork. Please allow up to 3 business days for a response to your inquiries.</p>
+            </div>
+        `;
+
+        // Show the modal (you'll need CSS to style it)
+        modal.style.display = "block";
+
+        // Add event listener for the new close button
+        document.querySelector(".close").addEventListener("click", closeModal);
+
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+const closeModal = () => {
+    modal.style.display = "none";
+    form.reset();
+};
+
+// Close the modal when clicking outside of the modal content
+window.onclick = function(event) {
+    if (event.target == modal) {
+        closeModal();
+    }
+}
