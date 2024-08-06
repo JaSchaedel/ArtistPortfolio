@@ -55,8 +55,21 @@ git clone https://github.com/JaSchaedel/ArtistPortfolio.git
 ```bash
 cd ArtistPortfolio
 ```
-3. Open the directory in VsCode:
-```bash
+3. Inside you will see 2 folders:
+- ArtistPortfolio
+- CodeYouWebDemoApi-main
+
+4. In order to prevent LiveServer from refreshing the page when something changes in the API (file read/write), Navigate to ArtistPortfolio directory and open in VsCode.
+cd ArtistPortfolio code .
+
+5. Running the API: It is recommended that CodeYouWebDemoApi is opened in another terminal.
+cd CodeYouWebDemoApi-main
+
+6. Open Api in seperate VsCode window:
 code .
-```
-4. 
+
+7. Once open, follow the instructions in the CodeYouDemoApi directory readme:
+- npm install
+- npm run build
+- npm run start
+
