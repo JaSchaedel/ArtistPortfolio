@@ -420,19 +420,19 @@
   display: block;
 }
 
+.content {
+  background-color: rgba(190, 190, 190, .5);
+  padding: 10px;
+  max-width: 110rem;
+  border-radius: 4px;
+}
+
 .content .name {
   font-size: 40px;
   text-transform: uppercase;
   font-weight: bold;
   opacity: 0;
   animation: animate 1s ease-in-out 0.3s 1 forwards;
-}
-
-.content .des {
-  margin-top: 10px;
-  margin-bottom: 20px;
-  opacity: 0;
-  animation: animate 1s ease-in-out 0.6s 1 forwards;
 }
 
 .content button {
@@ -542,7 +542,7 @@
 @media screen and (max-width: 960px) {
   .gallery {
     background-color: #222222;
-    min-height: 950px;
+    min-height: 900px;
     position: relative;
   }
 
@@ -622,15 +622,8 @@
     animation: animate 1s ease-in-out 0.3s 1 forwards;
   }
   
-  .content .des {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    opacity: 0;
-    animation: animate 1s ease-in-out 0.6s 1 forwards;
-  }
-  
   .content button {
-    padding: 10px 20px;
+    padding: 5px 10px;
     border: none;
     cursor: pointer;
     animation: animate 1s ease-in-out 0.6s 1 forwards;
@@ -668,6 +661,12 @@
 }
 
 @media screen and (max-width: 560px) {
+  .gallery {
+    background-color: #222222;
+    min-height: 700px;
+    position: relative;
+  }
+
   .gallery__container {
     position: absolute;
     top: 45%;
@@ -718,6 +717,51 @@
   .gallery__slide .item:nth-child(n + 5) {
     left: calc(5% + 222px);
     opacity: 0;
+  }
+
+  .content {
+    background-color: rgba(190, 190, 190, .5);
+    padding: 10px;
+    max-width: 130px;
+    border-radius: 4px;
+  }
+
+  .content .name {
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.3s 1 forwards;
+  }
+  
+  .content button {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    animation: animate 1s ease-in-out 0.6s 1 forwards;
+    opacity: 0;
+    background-color: #ff8177;
+    border-radius: 4px;
+    color: #fff;
+  }
+  
+  .content button:hover {
+    background: #4837ff;
+  }
+  
+  .button {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    top: 355px;
+  }
+  
+  .button button {
+    width: 30px;
+    height: 25px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
   }
 }
 

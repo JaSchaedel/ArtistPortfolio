@@ -282,12 +282,15 @@ const loadSelectedChips = () => {
         const remove = document.createElement('a');
         remove.innerText = 'X';
         remove.href = '#';
-        remove.onclick = () => removeChip(value);
-    
+        remove.onclick = (event) => {
+            event.preventDefault();
+            removeChip(value);
+        };
+        
         selectedChip.appendChild(remove);
     
         piecesContainer.appendChild(selectedChip)
-    })
+    });
 }
 
 const removeChip = (selectedChipValue) => {
@@ -322,7 +325,7 @@ const modal = document.getElementById("myModal");
 const closeButton = document.querySelector(".close");
 const form = document.getElementById("contactForm");
 
-//todo 2
+
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     const data = createContactObject();
@@ -374,7 +377,7 @@ const createContactRequest = async (url, data = {}) => {
 const closeModal = () => {
     modal.style.display = "none";
     form.reset();
-    selectedChip = [];
+    selectedPieces.splice(0, selectedPieces.length);
     loadSelectedChips();
 
 };
